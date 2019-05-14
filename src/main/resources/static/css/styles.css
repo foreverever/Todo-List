@@ -1,10 +1,10 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-body .issues {
+body .todos {
   font-family: 'Roboto', 'Helvetica', 'Noto Sans KR', sans-serif;
 }
 
-.issues .issues__posts {
+.todos .todos__posts {
   max-width: 900px;
   padding: 0;
   display: -webkit-flex;
@@ -17,12 +17,12 @@ body .issues {
   flex-shrink: 0;
 }
 
-.issues.mdl-layout .mdl-layout__content {
+.todos.mdl-layout .mdl-layout__content {
   position: relative;
   -webkit-overflow-scrolling: touch;
 }
 
-.issues .mdl-card {
+.todos .mdl-card {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -32,10 +32,10 @@ body .issues {
   -webkit-align-items: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
-  min-height: 360px;
+  min-height: 135px;
 }
 
-.issues .mdl-card__title {
+.todos .mdl-card__title {
   padding: 24px;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -43,11 +43,11 @@ body .issues {
   background-color: rgb(255,171,64);
 }
 
-.issues .mdl-card__title .material-icons {
+.todos .mdl-card__title .material-icons {
   margin-right: 8px;
 }
 
-.issues .mdl-card__supporting-text {
+.todos .mdl-card__supporting-text {
   width: 100%;
   padding: 0;
   padding-bottom: 16px;
@@ -59,16 +59,16 @@ body .issues {
   align-items: center;
 }
 
-.issues .mdl-card__supporting-text strong {
+.todos .mdl-card__supporting-text strong {
   font-weight: 400;
 }
 
-.issues .mdl-card__supporting-text:not(:last-child) {
+.todos .mdl-card__supporting-text:not(:last-child) {
   box-sizing: border-box;
   min-height: 76px;
 }
 
-.issues .meta {
+.todos .meta {
   box-sizing: border-box;
   padding: 16px;
   display: -webkit-flex;
@@ -86,11 +86,11 @@ body .issues {
   height: auto;
 }
 
-.issues .meta > *:first-child {
+.todos .meta > *:first-child {
   margin-right: 16px;
 }
 
-.issues .meta > * {
+.todos .meta > * {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -99,18 +99,18 @@ body .issues {
   flex-direction: column;
 }
 
-.issues--wrap .comments {
+.todos--wrap .comments {
   background-color: #EEE;
 }
 
-.issues--wrap .meta > * {
+.todos--wrap .meta > * {
   -webkit-align-items: center;
   -ms-flex-align: center;
   -ms-grid-row-align: center;
   align-items: center;
 }
 
-.issues--wrap .meta + .mdl-card__supporting-text {
+.todos--wrap .meta + .mdl-card__supporting-text {
   border: 0;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -120,14 +120,14 @@ body .issues {
   flex-direction: column;
 }
 
-.issues--wrap .meta + .mdl-card__supporting-text p {
+.todos--wrap .meta + .mdl-card__supporting-text p {
   width: 90%;
   font-size: 16px;
   line-height: 28px;
   margin: 0;
 }
 
-.issues--wrap .comments {
+.todos--wrap .comments {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -144,7 +144,7 @@ body .issues {
   box-sizing: border-box;
 }
 
-.issues--wrap .new-comment > form {
+.todos--wrap .new-comment > form {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -154,7 +154,7 @@ body .issues {
   margin-bottom: 16px;
 }
 
-.issues--wrap .new-comment > form .mdl-textfield {
+.todos--wrap .new-comment > form .mdl-textfield {
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
@@ -162,13 +162,13 @@ body .issues {
   color: rgb(97, 97, 97);
 }
 
-.issues--wrap .new-comment > form button {
+.todos--wrap .new-comment > form button {
   margin-top: 20px;
   background-color: rgba(0, 0, 0, 0.24);
   color: white;
 }
 
-.issues--wrap .comments .comment {
+.todos--wrap .comments .comment {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -180,7 +180,7 @@ body .issues {
   align-items: stretch;
 }
 
-.issues--wrap .comments .comment > .comment__header {
+.todos--wrap .comments .comment > .comment__header {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -192,21 +192,21 @@ body .issues {
   align-items: center;
 }
 
-.issues--wrap .comments .comment > .comment__header > .comment__avatar {
+.todos--wrap .comments .comment > .comment__header > .comment__avatar {
   width: 48px;
   height: 48px;
   border-radius: 24px;
   margin-right: 16px;
 }
 
-.issues--wrap .comments .comment > .comment__header > .comment__avatar2 {
+.todos--wrap .comments .comment > .comment__header > .comment__avatar2 {
   width: 24px;
   height: 24px;
   border-radius: 12px;
   margin-right: 8px;
 }
 
-.issues--wrap .comments .comment > .comment__header > .comment__author {
+.todos--wrap .comments .comment > .comment__header > .comment__author {
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
@@ -218,25 +218,25 @@ body .issues {
   flex-direction: column;
 }
 
-.issues--wrap .comments .comment > .comment__text {
+.todos--wrap .comments .comment > .comment__text {
   margin-top: 16px;
   line-height: 1.5em;
 }
 
-.issues--wrap .issues-back {
+.todos--wrap .todos-back {
   position: absolute;
   top: 16px;
   left: 16px;
   z-index: 9999;
 }
 
-.issues .section-spacer {
+.todos .section-spacer {
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.issues .minilogo {
+.todos .minilogo {
   width: 44px;
   height: 44px;
   background-position: center;
@@ -252,8 +252,8 @@ body .issues {
   display: flex !important;
 }
 
-.issues .mdl-mini-footer {
-  margin-top: 80px;
+.todos .mdl-mini-footer {
+  margin-top: 270px;
   height: 120px;
   padding: 40px;
   -webkit-align-items: center;
@@ -274,7 +274,7 @@ body .issues {
   width: 100%;
 }
 
-.issues .mdl-card .mdl-card__menu {
+.todos .mdl-card .mdl-card__menu {
   color: #fff;
 }
 
@@ -286,7 +286,7 @@ body .issues {
   margin-left: 4px;
 }
 
-.issue-list {
+.todos-list {
   width: 100%;
 }
 
@@ -295,32 +295,32 @@ a {
   color: inherit;
 }
 
-.issues-card-wide.mdl-card {
+.todos-card-wide.mdl-card {
   width: 100%;
 }
 
-.issues-card-wide.mdl-card .mdl-card__supporting-text .mdl-list {
-  padding: 0;
+.todos-card-wide.mdl-card .mdl-card__supporting-text .mdl-list {
+  padding: 20;
 }
 
-.issues-card-wide .mdl-card__title {
+.todos-card-wide .mdl-card__title {
   background-color: #ccc;
 }
 
-.issues-card-wide .mdl-button {
+.todos-card-wide .mdl-button {
   position: absolute;
   top: 48px;
   right: 50px;
 }
 
-.mdl-dialog.new-issue {
+.mdl-dialog.new-todo {
   width: 80%;
   padding: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.mdl-dialog.new-issue .pr {
+.mdl-dialog.new-todo .pr {
   background: #424242;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -331,16 +331,16 @@ a {
   padding: 11px 20px;
 }
 
-.mdl-dialog.new-issue .pr .material-icons {
+.mdl-dialog.new-todo .pr .material-icons {
   font-size: 18px;
 }
 
-.mdl-dialog.new-issue .mdl-dialog__content form,
-.mdl-dialog.new-issue .mdl-dialog__content .mdl-textfield {
+.mdl-dialog.new-todo .mdl-dialog__content form,
+.mdl-dialog.new-todo .mdl-dialog__content .mdl-textfield {
   width: 100%;
 }
 
-.issues--wrap .new-comment {
+.todos--wrap .new-comment {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
