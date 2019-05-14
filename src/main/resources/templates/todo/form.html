@@ -8,7 +8,7 @@
     </div>
     <div class="todos__posts mdl-grid">
         <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-            <form action="/api/todos" method="post">
+            <form action="/todos" method="post">
                 <div class="mdl-card__title mdl-color-text--grey-50" style="height:100px;">
                     <i class="material-icons">check_circle</i>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:90%">
@@ -17,11 +17,17 @@
                     </div>
                 </div>
                 <div class="mdl-color-text--primary-contrast mdl-card__supporting-text new-contents">
-                    <div class="mdl-textfield mdl-js-textfield" style="width:100%">
+                    <div class="mdl-textfield mdl-js-textfield" style="width:100%; height:100px;">
                             <textarea class="mdl-textfield__input" style="color:#888" type="text" rows="10" id="contents"
                                       name="contents" required></textarea>
-                        <label class="mdl-textfield__label" for="contents">Comment</label>
+                        <label class="mdl-textfield__label" for="contents">Contents</label>
                     </div>
+                </div>
+                <div class="priority_selection">
+                    우선순위 <br>
+                    <input type='checkbox' name='priority' value="high" />높음
+                    <input type='checkbox' name='priority' value="middle" />중간
+                    <input type='checkbox' name='priority' value="low" />낮음
                 </div>
                 <div class="mdl-color-text--primary-contrast mdl-card__supporting-text">
                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"

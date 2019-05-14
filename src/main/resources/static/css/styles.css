@@ -274,8 +274,8 @@ body .todos {
   width: 100%;
 }
 
-.todos .mdl-card .mdl-card__menu {
-  color: #fff;
+.todos {
+  color: #2F4F4F;
 }
 
 .mdl-layout__content {

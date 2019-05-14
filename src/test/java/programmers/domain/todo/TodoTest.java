@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class TodoTest {
 
-    public static final Todo originTodo = new Todo(1L,"Title","Contents","high",false, LocalDateTime.now());
+    public static final Todo originTodo = new Todo("Title","Contents","high", LocalDateTime.now());
 
     @Test
     public void update_success() {

@@ -24,12 +24,14 @@ public class Todo {
     private boolean completed;
     private LocalDateTime deadline;
 
-    public Todo(long id, String title, String contents, String priority, boolean completed, LocalDateTime deadline) {
-        this.id = id;
+    public Todo() {
+        completed = false;
+    }
+
+    public Todo(String title, String contents, String priority, LocalDateTime deadline) {
         this.title = title;
         this.contents = contents;
         this.priority = priority;
-        this.completed = completed;
         this.deadline = deadline;
     }
 
