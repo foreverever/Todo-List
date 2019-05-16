@@ -1,15 +1,12 @@
 package programmers.domain.todo;
 
+import support.domain.AbstractEntity;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
-public class Todo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Todo extends AbstractEntity {
 
     @Column(nullable = false, length = 20)
     private String title;
@@ -17,11 +14,11 @@ public class Todo {
     @Column(nullable = false, length = 100)
     private String contents;
 
-
     @Column(nullable = false, length = 10)
     private String priority;
 
     private boolean completed;
+
     private LocalDateTime deadline;
 
     public Todo() {
@@ -33,14 +30,6 @@ public class Todo {
         this.contents = contents;
         this.priority = priority;
         this.deadline = deadline;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -83,21 +72,7 @@ public class Todo {
         this.deadline = deadline;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Todo todo = (Todo) o;
-        return id == todo.id &&
-                completed == todo.completed &&
-                Objects.equals(title, todo.title) &&
-                Objects.equals(contents, todo.contents) &&
-                Objects.equals(priority, todo.priority) &&
-                Objects.equals(deadline, todo.deadline);
-    }
+    public void update(Todo updatedTodo) {
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, contents, priority, completed, deadline);
     }
 }
