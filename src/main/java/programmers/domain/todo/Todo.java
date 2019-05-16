@@ -72,7 +72,19 @@ public class Todo extends AbstractEntity {
         this.deadline = deadline;
     }
 
-    public void update(Todo updatedTodo) {
+    public String getFormattedDeadline() {
+        return getFormattedDate(deadline, "yyyy-MM-dd HH:mm");
+    }
 
+
+    public Todo update(Todo updatedTodo) {
+        this.title = updatedTodo.title;
+        this.contents = updatedTodo.contents;
+        this.priority = updatedTodo.priority;
+        return this;
+    }
+
+    public void complete() {
+        this.completed = true;
     }
 }

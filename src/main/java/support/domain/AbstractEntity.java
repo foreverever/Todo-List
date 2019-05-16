@@ -59,6 +59,13 @@ public class AbstractEntity {
         return this.modifiedDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
+    protected String getFormattedDate(LocalDateTime dateTime, String format) {
+        if (dateTime == null) {
+            return "";
+        }
+        return dateTime.format(DateTimeFormatter.ofPattern(format));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

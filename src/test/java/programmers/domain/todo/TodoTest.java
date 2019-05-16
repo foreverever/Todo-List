@@ -19,17 +19,13 @@ public class TodoTest {
     }
 
     @Test
-    public void update_fail() {
-        
+    public void complete_success() {
+        ORIGIN_TODO.complete();
+        assertThat(ORIGIN_TODO.isCompleted()).isTrue();
     }
 
     @Test
     public void delete_success() {
-
-    }
-
-    @Test
-    public void delete_fail() {
 
     }
 }

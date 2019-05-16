@@ -2,6 +2,7 @@ package programmers.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import programmers.domain.todo.Todo;
 import programmers.domain.todo.TodoRepository;
 
@@ -21,4 +22,15 @@ public class TodoService {
         return todoRepository.findAll();
     }
 
+    @Transactional
+    public Todo update(long id, Todo updatedTodo) {
+        Todo currentTodo = todoRepository.findById(id)
+                .orElseThrow(UnknownError::new);    //예외처리 클래스 생성 필요
+        return currentTodo.update(updatedTodo);
+    }
+
+    public Todo findTodo(long id) {
+        return todoRepository.findById(id)
+                .orElseThrow(UnknownError::new);
+    }
 }
