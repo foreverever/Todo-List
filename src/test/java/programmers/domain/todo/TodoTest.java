@@ -23,9 +23,4 @@ public class TodoTest {
         ORIGIN_TODO.complete();
         assertThat(ORIGIN_TODO.isCompleted()).isTrue();
     }
-
-    @Test
-    public void delete_success() {
-
-    }
 }

@@ -54,6 +54,36 @@ function deleteTodo(e) {
     })
 }
 
+//완료
+$(".complete-todo-btn").click(completeTodo);
+
+function completeTodo(e) {
+    e.preventDefault();
+    console.log("call complete");
+    var completeBtn = $(this);
+    var url = completeBtn.parent().attr("action");
+
+    $.ajax({
+        type : "post",
+        url : url,
+        dataType : "json",
+        error : onError,
+        success : function(data, status, jqXHR) {
+            var template;
+            if(data.deadline) {
+                var todoCompleteTemplate = $("#complete-todo-deadline-template").html();
+                template = todoCompleteTemplate.format(data.title, data.priority, data.contents, data.deadline, data.formattedDeadline);
+            }
+            else {
+                var todoCompleteTemplate = $("#complete-todo-template").html();
+                template = todoCompleteTemplate.format(data.title, data.priority, data.contents);
+            }
+            $("#todo-body-"+data.id).html(template);
+        }
+    })
+}
+
+
 //에러 메세지
 function onError(jqXHR, status, errorThrown) {
     console.log(jqXHR.responseText);    //json값 다 보여줌 (키,밸류 모두다) ex) {"message":"아이디 또는 비밀번호가 다릅니다."}

@@ -32,4 +32,10 @@ public class ApiTodoController {
         todoService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @PostMapping("")
+    public ResponseEntity complete(@PathVariable long id) {
+        Todo currentTodo = todoService.complete(id);
+        return new ResponseEntity<Todo>(currentTodo, HttpStatus.OK);
+    }
 }

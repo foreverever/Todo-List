@@ -1,19 +1,32 @@
 {{#partial "content"}}
-    <main class="mdl-layout__content">
-        <div class="todos__posts mdl-grid">
-            <div class="todos-card-wide mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title" style="min-height:30px;">
-                    <h2 class="mdl-card__title-text mdl-color-text--grey-800">ToDo</h2>
-                </div>
-                <a href="/todos/form"
-                   class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored show-modal">
-                    <i class="material-icons">add</i>
-                </a>
-                {{#todos}}
-                <div class="mdl-card__supporting-text" id="todo-body-{{id}}">
-                    <ul class="todos-list mdl-list">
-                        <li class="mdl-list__item mdl-list__item--two-line one-todo-body" id="todo-body-">
-                            <span class="mdl-list__item-primary-content" style="height:50px;">
+<main class="mdl-layout__content">
+    <div class="todos__posts mdl-grid">
+        <div class="todos-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title" style="min-height:30px;">
+                <h2 class="mdl-card__title-text mdl-color-text--grey-800">ToDo</h2>
+            </div>
+            <a href="/todos/form"
+               class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored show-modal">
+                <i class="material-icons">add</i>
+            </a>
+            {{#todos}}
+            <div class="mdl-card__supporting-text" id="todo-body-{{id}}">
+                <ul class="todos-list mdl-list">
+                    <li class="mdl-list__item mdl-list__item--two-line one-todo-body" id="todo-body-">
+                        {{#completed}}
+                        <span class="mdl-list__item-primary-content" style="height:50px;">
+                                <del><strong style="font-size:1.5em">{{title}}</strong></del>
+                                <del><strong>({{priority}})</strong></del>
+                                <del><div> {{contents}}</div></del>
+                                <del>{{#deadline}}</del>
+                                <span class="mdl-list__item-sub-title">
+                                    <relative-time datetime="deadline"
+                                                   title="deadline">마감일자 : {{formattedDeadline}}</relative-time>
+                                </span>
+                                {{/deadline}}
+                            </span>
+                        {{else}}
+                        <span class="mdl-list__item-primary-content" style="height:50px;">
                                 <strong style="font-size:1.5em">{{title}}</strong>
                                 <strong>({{priority}})</strong>
                                 <div> {{contents}}</div>
@@ -23,79 +36,82 @@
                                                    title="deadline">마감일자 : {{formattedDeadline}}</relative-time>
                                 </span>
                                 {{/deadline}}
-
                             </span>
-                            <!--{{#completed}}-->
-                            <div class="mdl-list__item-secondary-content">
-                                expired
-									<span class="material-icons mdl-badge mdl-badge--overlap"
-                                          data-badge="expired">expired</span>
-                            </div>
-                            <!--{{/completed}}-->
-                                <form style="display: inline;" action="/api/todos/{{id}}" class="complete" method="post">
-                                    <button type="submit" class="complete-todo-btn" id="complete-todo-btn">완료</button>
-                                </form>
-                                <form style="display: inline;" action="/todos/{{id}}" class="update-todo" method="get">
-                                    <button type="submit" class="update-todo-btn" id="update-todo-btn">수정</button>
-                                </form>
-                                <form style="display: inline;" action="/api/todos/{{id}}" class="delete-todo" method="post">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="delete-todo-btn" id="delete-todo-btn">삭제</button>
-                                </form>
-                        </li>
-                    </ul>
-                </div>
-                {{/todos}}
+                        {{/completed}}
+                        {{^completed}}
+                        <form style="display: inline;" action="/api/todos/{{id}}" class="complete" method="post">
+                            <button type="submit" class="complete-todo-btn" id="complete-todo-btn">완료</button>
+                        </form>
+                        <form style="display: inline;" action="/todos/{{id}}" class="update-todo" method="get">
+                            <button type="submit" class="update-todo-btn" id="update-todo-btn">수정</button>
+                        </form>
+                        {{/completed}}
+                        <form style="display: inline;" action="/api/todos/{{id}}" class="delete-todo" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="delete-todo-btn" id="delete-todo-btn">삭제</button>
+                        </form>
+
+                        <!--{{#completed}}-->
+                        <!--<div class="mdl-list__item-secondary-content">-->
+                        <!--expired-->
+                        <!--<span class="material-icons mdl-badge mdl-badge&#45;&#45;overlap"-->
+                        <!--data-badge="expired">expired</span>-->
+                        <!--</div>-->
+                        <!--{{/completed}}-->
+                    </li>
+                </ul>
+            </div>
+            {{/todos}}
+        </div>
+    </div>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer--left-section">
+            <div class="mdl-logo mdl-color-text--grey-600">
+                Proudly powered by <a href="https://github.com/foreverever">TaeSu</a>
             </div>
         </div>
-        <footer class="mdl-mini-footer">
-            <div class="mdl-mini-footer--left-section">
-                <div class="mdl-logo mdl-color-text--grey-600">
-                    Proudly powered by <a href="https://github.com/foreverever">TaeSu</a>
-                </div>
-            </div>
-        </footer>
-    </main>
-    <div class="mdl-layout__obfuscator"></div>
+    </footer>
+</main>
+<div class="mdl-layout__obfuscator"></div>
 </div>
 
-<script type="text/template" id="write-update-todo-template">
-    <div class="todos__posts mdl-grid">
-        <!--<div class="mdl-card mdl-shadow&#45;&#45;4dp mdl-cell mdl-cell&#45;&#45;12-col" style="width:100%; height:300px;">-->
-            <form action="/api/todos" method="post" style="height:300px;">
-                <ul class="todos-list mdl-list" style="height:500px;">
+<script type="text/template" id="complete-todo-template">
+    <div class="mdl-card__supporting-text" id="todo-body-template">
+        <ul class="todos-list mdl-list">
+            <li class="mdl-list__item mdl-list__item--two-line one-todo-body">
+                <span class="mdl-list__item-primary-content" style="height:50px;">
+                    <del><strong style="font-size:1.5em">{0}</strong></del>
+                    <del><strong>({1})</strong></del>
+                    <del><div> {2}</div></del>
+                </span>
+                <form style="display: inline;" action="/api/todos/{{id}}" class="delete-todo" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="delete-todo-btn" id="delete-todo-btn-template">삭제</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</script>
 
-                <!--<li class="mdl-list__item mdl-list__item&#45;&#45;two-line" style="height:500px;">-->
-                    <div class="mdl-textfield mdl-js-textfield" style="width:100%; height:150px;">
-                            <textarea class="mdl-textfield__input" style="color:#888; height:100%; width:100%;" type="text" rows="5" id="title"
-                                      name="title" required>{0}</textarea>
-                    </div>
-                    <div class="mdl-textfield mdl-js-textfield" style="width:100%; height:150px;">
-                            <textarea class="mdl-textfield__input" style="color:#888; height:100%; width:100%;" type="text" rows="5" id="contents"
-                                      name="contents" required>{1}</textarea>
-                    </div>
-                <!--</li>-->
-                </ul>
-                <div class="priority_selection">
-                    우선순위
-                    <br>
-                    <input type='radio' name = "priority" value="높음" />높음
-                    <input type='radio' name = "priority" value="중간" />중간
-                    <input type='radio' name = "priority" value="낮음" />낮음
-                </div>
-                <br>
-                <div class="deadline_selection">
-                    마감기한
-                    <br>
-                    <input type="datetime-local" name="deadline" id="deadline">
-                </div>
-                <div class="mdl-color-text--primary-contrast mdl-card__supporting-text">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="template-update-btn" type="submit"
-                            style="margin:10px auto; width:200px;">수정하기
-                    </button>
-                </div>
-            </form>
-        <!--</div>-->
+<script type="text/template" id="complete-todo-deadline-template">
+    <div class="mdl-card__supporting-text" id="todo-body-deadline-template">
+        <ul class="todos-list mdl-list">
+            <li class="mdl-list__item mdl-list__item--two-line one-todo-body">
+                <span class="mdl-list__item-primary-content" style="height:50px;">
+                    <del><strong style="font-size:1.5em">{0}</strong></del>
+                    <del><strong>({1})</strong></del>
+                    <del><div> {2}</div></del>
+                    <span class="mdl-list__item-sub-title">
+                        <relative-time datetime="deadline"
+                                       title="deadline">마감일자 : {4}</relative-time>
+                    </span>
+                </span>
+                <form style="display: inline;" action="/api/todos/{{id}}" class="delete-todo" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="delete-todo-btn" id="delete-todo-btn-deadline-template">삭제</button>
+                </form>
+            </li>
+        </ul>
     </div>
 </script>
 
