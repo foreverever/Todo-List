@@ -10,6 +10,7 @@ body .todos {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  display:block;
   width: 100%;
   margin: 0 auto;
   -webkit-flex-shrink: 0;

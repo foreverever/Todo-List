@@ -1,7 +1,7 @@
 console.log("js 시작");
 
 //수정 폼
-$("#update-todo-btn").click(updateForm);
+//$(".update-todo-btn").click(updateForm);
 
 function updateForm(e) {
     e.preventDefault();
@@ -27,10 +27,31 @@ function updateForm(e) {
 }
 
 //수정
-
 function update(e){
     e.preventDefault();
     console.log("call update");
+
+}
+
+
+//삭제
+$(".delete-todo-btn").click(deleteTodo);
+
+function deleteTodo(e) {
+    e.preventDefault();
+    console.log("call delete");
+
+    var deleteBtn = $(this);
+    var url = deleteBtn.parent().attr("action");
+
+    $.ajax({
+        type : "delete",
+        url : url,
+        error : onError,
+        success : function(data, status, jqXHR) {
+            deleteBtn.closest(".one-todo-body").remove();
+        }
+    })
 }
 
 //에러 메세지
@@ -50,3 +71,10 @@ String.prototype.format = function() {
         ;
   });
 };
+
+Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});

@@ -33,4 +33,11 @@ public class TodoService {
         return todoRepository.findById(id)
                 .orElseThrow(UnknownError::new);
     }
+
+    @Transactional
+    public void delete(long id) {
+        Todo currentTodo = todoRepository.findById(id)
+                .orElseThrow(UnknownError::new);
+        todoRepository.delete(currentTodo);
+    }
 }
