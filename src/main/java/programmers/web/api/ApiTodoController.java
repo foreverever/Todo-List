@@ -15,12 +15,6 @@ public class ApiTodoController {
     @Autowired
     private TodoService todoService;
 
-    @GetMapping("")
-    public ResponseEntity updateForm(@PathVariable long id) {
-        Todo currentTodo = todoService.findTodo(id);
-        return new ResponseEntity<Todo>(currentTodo,HttpStatus.OK);
-    }
-
     @PutMapping("")
     public ResponseEntity update(@PathVariable long id, @RequestBody Todo todo) {
         Todo updatedTodo = todoService.update(id, todo);

@@ -49,6 +49,7 @@ function deleteTodo(e) {
         url : url,
         error : onError,
         success : function(data, status, jqXHR) {
+            console.log(status);
             deleteBtn.closest(".one-todo-body").remove();
         }
     })
