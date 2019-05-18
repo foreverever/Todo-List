@@ -79,7 +79,7 @@
                     <del><strong>({1})</strong></del>
                     <del><div> {2}</div></del>
                 </span>
-                <form style="display: inline;" action="/api/todos/{{id}}" class="delete-todo" method="post">
+                <form style="display: inline;" action="/api/todos/{3}" class="delete-todo" method="post">
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="delete-todo-btn" id="delete-todo-btn-template">삭제</button>
                 </form>
@@ -101,7 +101,7 @@
                                        title="deadline">마감일자 : {4}</relative-time>
                     </span>
                 </span>
-                <form style="display: inline;" action="/api/todos/{{id}}" class="delete-todo" method="post">
+                <form style="display: inline;" action="/api/todos/{5}" class="delete-todo" method="post">
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="delete-todo-btn" id="delete-todo-btn-deadline-template">삭제</button>
                 </form>

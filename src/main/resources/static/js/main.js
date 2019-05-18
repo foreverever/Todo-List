@@ -48,14 +48,15 @@ function completeTodo(e) {
         dataType : "json",
         error : onError,
         success : function(data, status, jqXHR) {
+            console.log(data);
             var template;
             if(data.deadline) {
                 var todoCompleteTemplate = $("#complete-todo-deadline-template").html();
-                template = todoCompleteTemplate.format(data.title, data.priority, data.contents, data.deadline, data.formattedDeadline);
+                template = todoCompleteTemplate.format(data.title, data.priority, data.contents, data.deadline, data.formattedDeadline, data.id);
             }
             else {
                 var todoCompleteTemplate = $("#complete-todo-template").html();
-                template = todoCompleteTemplate.format(data.title, data.priority, data.contents);
+                template = todoCompleteTemplate.format(data.title, data.priority, data.contents, data.id);
             }
             $("#todo-body-"+data.id).html(template);
             $(".delete-todo-btn").click(deleteTodo);
