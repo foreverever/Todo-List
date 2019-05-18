@@ -3,15 +3,18 @@ package programmers.domain.todo;
 import support.domain.AbstractEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
 public class Todo extends AbstractEntity {
 
-    @Column(nullable = false, length = 20)
+    @Size(min = 2, max = 100)
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, length = 100)
+    @Size(min = 2)
+    @Column(nullable = false)
     private String contents;
 
     @Column(nullable = false, length = 10)

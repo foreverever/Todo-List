@@ -26,26 +26,26 @@ public class TodoService {
     @Transactional
     public Todo update(long id, Todo updatedTodo) {
         Todo currentTodo = todoRepository.findById(id)
-                .orElseThrow(UnknownError::new);    //예외처리 클래스 생성 필요
+                .orElseThrow(RuntimeException::new);
         return currentTodo.update(updatedTodo);
     }
 
     public Todo findTodo(long id) {
         return todoRepository.findById(id)
-                .orElseThrow(UnknownError::new);
+                .orElseThrow(RuntimeException::new);
     }
 
     @Transactional
     public void delete(long id) {
         Todo currentTodo = todoRepository.findById(id)
-                .orElseThrow(UnknownError::new);
+                .orElseThrow(RuntimeException::new);
         todoRepository.delete(currentTodo);
     }
 
     @Transactional
     public Todo complete(long id) {
         Todo currentTodo = todoRepository.findById(id)
-                .orElseThrow(UnknownError::new);
+                .orElseThrow(RuntimeException::new);
         return currentTodo.complete();
     }
 
