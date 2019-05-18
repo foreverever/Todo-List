@@ -18,11 +18,15 @@ public class Todo extends AbstractEntity {
     private String priority;
 
     private boolean completed;
+    private boolean expired;
 
     private LocalDateTime deadline;
+    private LocalDateTime now;
 
     public Todo() {
         completed = false;
+        expired = false;
+        now = LocalDateTime.now();
     }
 
     public Todo(String title, String contents, String priority, LocalDateTime deadline) {
@@ -72,6 +76,22 @@ public class Todo extends AbstractEntity {
         this.deadline = deadline;
     }
 
+    public LocalDateTime getNow() {
+        return now;
+    }
+
+    public void setNow(LocalDateTime now) {
+        this.now = now;
+    }
+
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
+    }
+
     public String getFormattedDeadline() {
         return getFormattedDate(deadline, "yyyy-MM-dd HH:mm");
     }
@@ -84,7 +104,15 @@ public class Todo extends AbstractEntity {
     }
 
     public Todo complete() {
-        this.completed = true;
+        completed = true;
         return this;
+    }
+
+    public void updateCurrentTime() {
+        now = LocalDateTime.now();
+        if (deadline == null) return;
+        if (now.isAfter(deadline)) {
+            expired = true;
+        }
     }
 }

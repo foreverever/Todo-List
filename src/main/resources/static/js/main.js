@@ -33,28 +33,6 @@ function update(e){
 
 }
 
-
-//삭제
-$(".delete-todo-btn").click(deleteTodo);
-
-function deleteTodo(e) {
-    e.preventDefault();
-    console.log("call delete");
-
-    var deleteBtn = $(this);
-    var url = deleteBtn.parent().attr("action");
-
-    $.ajax({
-        type : "delete",
-        url : url,
-        error : onError,
-        success : function(data, status, jqXHR) {
-            console.log(status);
-            deleteBtn.closest(".one-todo-body").remove();
-        }
-    })
-}
-
 //완료
 $(".complete-todo-btn").click(completeTodo);
 
@@ -80,9 +58,34 @@ function completeTodo(e) {
                 template = todoCompleteTemplate.format(data.title, data.priority, data.contents);
             }
             $("#todo-body-"+data.id).html(template);
+            $(".delete-todo-btn").click(deleteTodo);
         }
     })
 }
+
+//삭제
+$(".delete-todo-btn").click(deleteTodo);
+
+function deleteTodo(e) {
+    e.preventDefault();
+    console.log("call delete");
+
+    var deleteBtn = $(this);
+    var url = deleteBtn.parent().attr("action");
+    console.log(url);
+
+    $.ajax({
+        type : "delete",
+        url : url,
+        error : onError,
+        success : function(data, status, jqXHR) {
+            console.log(status);
+            deleteBtn.closest(".one-todo-body").remove();
+        }
+    })
+}
+
+
 
 
 //에러 메세지

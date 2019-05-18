@@ -18,7 +18,7 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
-    public List<Todo> findAll(){
+    public List<Todo> findAll() {
         return todoRepository.findAll();
     }
 
@@ -46,5 +46,12 @@ public class TodoService {
         Todo currentTodo = todoRepository.findById(id)
                 .orElseThrow(UnknownError::new);
         return currentTodo.complete();
+    }
+
+    @Transactional
+    public void updateCurrentTime(List<Todo> todos) {
+        for (Todo todo : todos) {
+            todo.updateCurrentTime();
+        }
     }
 }

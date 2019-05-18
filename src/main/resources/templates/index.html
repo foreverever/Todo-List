@@ -39,6 +39,9 @@
                             </span>
                         {{/completed}}
                         {{^completed}}
+                        {{#expired}}
+                        <span class="material-icons mdl-badge mdl-badge--overlap" data-badge="!" title="마감!!">comment</span>
+                        {{/expired}}
                         <form style="display: inline;" action="/api/todos/{{id}}" class="complete" method="post">
                             <button type="submit" class="complete-todo-btn" id="complete-todo-btn">완료</button>
                         </form>
@@ -50,14 +53,6 @@
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="delete-todo-btn" id="delete-todo-btn">삭제</button>
                         </form>
-
-                        <!--{{#completed}}-->
-                        <!--<div class="mdl-list__item-secondary-content">-->
-                        <!--expired-->
-                        <!--<span class="material-icons mdl-badge mdl-badge&#45;&#45;overlap"-->
-                        <!--data-badge="expired">expired</span>-->
-                        <!--</div>-->
-                        <!--{{/completed}}-->
                     </li>
                 </ul>
             </div>
