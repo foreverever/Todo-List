@@ -1,36 +1,99 @@
 console.log("js 시작");
 
-//수정 폼
-//$(".update-todo-btn").click(updateForm);
+//생성
+$(".create-todo-btn").click(createTodo);
 
-function updateForm(e) {
+function createTodo(e) {
     e.preventDefault();
-    console.log("call updateForm");
-    var btn = $(this);
-    var url = btn.parent().attr("action");
-    console.log("url : " + url);
+    console.log("call createTodo");
+    var url = $(".create-todo").attr("action");
+
+    var json = new Object();
+    json.title = $("#title").val();
+    json.contents = $("#contents").val();
+    json.priority = $("input[name=priority]:checked").val();
+    json.deadline = $("#deadline").val();
+
+    console.log(url);
 
     $.ajax({
-        type: "get",
+        type : "post",
         url : url,
+        data : JSON.stringify(json),
         dataType : "json",
+        contentType : "application/json",
         error : onError,
-        success : function(data, status, jqXHR) {
-            console.log(status);
+        success : function (data, status, jqXHR) {
             console.log(data);
-            var todoUpdateTemplate = $("#write-update-todo-template").html();
-            var template = todoUpdateTemplate.format(data.title, data.contents);
-            $("#todo-body-"+data.id).html(template);
-            $("#template-update-btn").click(update);
+            if(data) {
+                alert("입력이 완료되었습니다.");
+                location.href = jqXHR.getResponseHeader("location");    //응답 헤더가 가진 location으로 페이지 이동
+            }
+            else {
+                alert("다시 입력 해주세요.");
+            }
         }
     })
 }
 
+
+////수정 폼
+////$(".update-todo-btn").click(updateForm);
+//
+//function updateForm(e) {
+//    e.preventDefault();
+//    console.log("call updateForm");
+//    var btn = $(this);
+//    var url = btn.parent().attr("action");
+//    console.log("url : " + url);
+//
+//    $.ajax({
+//        type: "get",
+//        url : url,
+//        dataType : "json",
+//        error : onError,
+//        success : function(data, status, jqXHR) {
+//            console.log(status);
+//            console.log(data);
+//            var todoUpdateTemplate = $("#write-update-todo-template").html();
+//            var template = todoUpdateTemplate.format(data.title, data.contents);
+//            $("#todo-body-"+data.id).html(template);
+//            $("#template-update-btn").click(update);
+//        }
+//    })
+//}
+
 //수정
-function update(e){
+$(".update-todo").click(updateTodo);
+
+function updateTodo(e) {
     e.preventDefault();
     console.log("call update");
+    var url = $("#update-todo").attr("action");
 
+    var json = new Object();
+    json.title = $("#title").val();
+    json.contents = $("#contents").val();
+    json.priority = $("input[name=priority]:checked").val();
+    json.deadline = $("#deadline").val();
+
+    $.ajax({
+        type : "put",
+        url : url,
+        data : JSON.stringify(json),
+        contentType : "application/json",
+        dataType : "json",
+        error : onError,
+        success : function(data, status, jqXHR) {
+            if(data) {
+                alert("수정이 완료되었습니다.");
+                location.href = jqXHR.getResponseHeader("location");
+            }
+            else {
+                alert("다시 입력해 주세요.");
+            }
+        }
+    })
 }
 
 //완료
@@ -106,10 +169,3 @@ String.prototype.format = function() {
         ;
   });
 };
-
-Handlebars.registerHelper('ifCond', function(v1, v2, options) {
-  if(v1 === v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});

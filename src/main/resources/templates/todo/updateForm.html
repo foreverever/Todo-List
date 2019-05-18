@@ -9,7 +9,8 @@
     {{#todo}}
     <div class="todos__posts mdl-grid">
         <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-            <form action="/todos/{{id}}" method="post">
+            <form action="/api/todos/{{id}}" method="post" id="update-todo">
+                <input type="hidden" name="_method" value="put"/>
                 <div class="mdl-card__title mdl-color-text--grey-50" style="height:100px;">
                     <i class="material-icons">check_circle</i>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:90%">
@@ -27,14 +28,15 @@
                 <div class="priority_selection">
                     우선순위
                     <br>
-                    <input type='radio' name = "priority" value="높음" />높음
-                    <input type='radio' name = "priority" value="중간" />중간
-                    <input type='radio' name = "priority" value="낮음" />낮음
+                    <input type='radio' name="priority" value="높음"/>높음
+                    <input type='radio' name="priority" value="중간"/>중간
+                    <input type='radio' name="priority" value="낮음"/>낮음
                 </div>
                 {{/priority}}
                 <br>
                 <div class="mdl-color-text--primary-contrast mdl-card__supporting-text">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored update-todo"
+                            type="submit"
                             style="margin:10px auto; width:200px;">수정하기
                     </button>
                 </div>

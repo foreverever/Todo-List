@@ -5,8 +5,8 @@
             <div class="mdl-card__title" style="min-height:30px;">
                 <h2 class="mdl-card__title-text mdl-color-text--grey-800">ToDo</h2>
             </div>
-            <a href="/todos/form"
-               class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored show-modal">
+            <a href="/todo/form.html"
+               class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored add-todo-btn">
                 <i class="material-icons">add</i>
             </a>
             {{#todos}}
@@ -45,7 +45,7 @@
                         <form style="display: inline;" action="/api/todos/{{id}}" class="complete" method="post">
                             <button type="submit" class="complete-todo-btn" id="complete-todo-btn">완료</button>
                         </form>
-                        <form style="display: inline;" action="/todos/{{id}}" class="update-todo" method="get">
+                        <form style="display: inline;" action="/todos/{{id}}" class="update" method="get">
                             <button type="submit" class="update-todo-btn" id="update-todo-btn">수정</button>
                         </form>
                         {{/completed}}

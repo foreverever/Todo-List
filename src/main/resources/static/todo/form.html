@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>ToDo List</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-orange.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="todos todos--wrap mdl-layout mdl-js-layout has-drawer is-upgraded">
+
+    <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">
+            <a href="/">ToDo List</a>
+        </span>
+            <div class="mdl-layout-spacer"></div>
+            <!-- Tabs -->
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+    <main class="mdl-layout__content">
+        <div class="todos-back">
+            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon back-btn" title="go back"
+               role="button">
+                <i class="material-icons" role="presentation">arrow_back</i>
+            </a>
+        </div>
+        <div class="todos__posts mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                <form action="/api/todos" method="post" class="create-todo">
+                    <div class="mdl-card__title mdl-color-text--grey-50" style="height:100px;">
+                        <i class="material-icons">check_circle</i>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:90%">
+                            <input class="mdl-textfield__input" type="text" id="title" name="title" required>
+                            <label class="mdl-textfield__label" for="title">Title</label>
+                        </div>
+                    </div>
+                    <div class="mdl-color-text--primary-contrast mdl-card__supporting-text new-contents">
+                        <div class="mdl-textfield mdl-js-textfield" style="width:100%; height:100px;">
+                            <textarea class="mdl-textfield__input" style="color:#888" type="text" rows="10"
+                                      id="contents"
+                                      name="contents" required></textarea>
+                            <label class="mdl-textfield__label" for="contents">Contents</label>
+                        </div>
+                    </div>
+                    <div class="priority_selection" id="p">
+                        우선순위
+                        <br>
+                        <input type='radio' name="priority" value="높음"/>높음
+                        <input type='radio' name="priority" value="중간"/>중간
+                        <input type='radio' name="priority" value="낮음"/>낮음
+                    </div>
+                    <br>
+                    <div class="deadline_selection">
+                        마감기한
+                        <br>
+                        <input type="datetime-local" name="deadline" id="deadline">
+                    </div>
+                    <div class="mdl-color-text--primary-contrast mdl-card__supporting-text">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored create-todo-btn"
+                                type="submit"
+                                style="margin:10px auto; width:200px;">등록하기
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer--left-section">
+                <div class="mdl-logo mdl-color-text--grey-600">
+                    Proudly powered by <a href="https://github.com/foreverever">TaeSu</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<div class="mdl-layout__obfuscator"></div>
+<script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+<script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/handlebars.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
+</body>
+</html>

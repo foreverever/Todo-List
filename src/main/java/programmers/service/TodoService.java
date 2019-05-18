@@ -14,6 +14,7 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
+    @Transactional
     public Todo add(Todo todo) {
         return todoRepository.save(todo);
     }

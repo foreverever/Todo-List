@@ -8,26 +8,38 @@ import org.springframework.web.bind.annotation.*;
 import programmers.domain.todo.Todo;
 import programmers.service.TodoService;
 
+import java.net.URI;
+
 @RestController
-@RequestMapping("/api/todos/{id}")
+@RequestMapping("/api/todos")
 public class ApiTodoController {
 
     @Autowired
     private TodoService todoService;
 
-    @PutMapping("")
-    public ResponseEntity update(@PathVariable long id, @RequestBody Todo todo) {
-        Todo updatedTodo = todoService.update(id, todo);
-        return new ResponseEntity<Todo>(updatedTodo, HttpStatus.OK);
+    @PostMapping("")
+    public ResponseEntity create(@RequestBody Todo todo) {
+        Todo createdTodo = todoService.add(todo);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("/"));
+        return new ResponseEntity<Todo>(createdTodo, headers, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("")
-    public ResponseEntity delete(@PathVariable long id){
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable long id, @RequestBody Todo todo) {
+        Todo updatedTodo = todoService.update(id, todo);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("/"));
+        return new ResponseEntity<Todo>(updatedTodo, headers, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable long id) {
         todoService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/{id}")
     public ResponseEntity complete(@PathVariable long id) {
         Todo currentTodo = todoService.complete(id);
         return new ResponseEntity<Todo>(currentTodo, HttpStatus.OK);
