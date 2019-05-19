@@ -122,7 +122,7 @@ function completeTodo(e) {
                 template = todoCompleteTemplate.format(data.title, data.priority, data.contents, data.id);
             }
             $("#todo-body-"+data.id).html(template);
-            $(".delete-todo-btn").click(deleteTodo);
+            $("#todo-body-"+data.id).on("click", ".delete-todo-btn[type='submit']", deleteTodo);
         }
     })
 }
