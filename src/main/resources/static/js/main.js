@@ -37,33 +37,6 @@ function createTodo(e) {
     })
 }
 
-
-////수정 폼
-////$(".update-todo-btn").click(updateForm);
-//
-//function updateForm(e) {
-//    e.preventDefault();
-//    console.log("call updateForm");
-//    var btn = $(this);
-//    var url = btn.parent().attr("action");
-//    console.log("url : " + url);
-//
-//    $.ajax({
-//        type: "get",
-//        url : url,
-//        dataType : "json",
-//        error : onError,
-//        success : function(data, status, jqXHR) {
-//            console.log(status);
-//            console.log(data);
-//            var todoUpdateTemplate = $("#write-update-todo-template").html();
-//            var template = todoUpdateTemplate.format(data.title, data.contents);
-//            $("#todo-body-"+data.id).html(template);
-//            $("#template-update-btn").click(update);
-//        }
-//    })
-//}
-
 //수정
 $(".update-todo").click(updateTodo);
 
