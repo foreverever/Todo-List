@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import programmers.domain.todo.Todo;
 import programmers.domain.todo.TodoRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,9 +43,10 @@ public class TodoService {
     }
 
     @Transactional
-    public void updateCurrentTime(List<Todo> todos) {
-        for (Todo todo : todos) {
-            todo.updateCurrentTime();
+    public void findDeadlineTodo(LocalDateTime now) {
+        List<Todo> notExpiredTodos = todoRepository.findByExpiredAndDeadlineBefore(false, now);
+        for (Todo todo : notExpiredTodos) {
+            todo.updateExpired();
         }
     }
 

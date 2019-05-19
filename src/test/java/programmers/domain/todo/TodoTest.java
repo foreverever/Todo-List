@@ -34,17 +34,9 @@ public class TodoTest {
     }
 
     @Test
-    public void updateCurrentTime_expired() {
-        originTodo.updateCurrentTime();
+    public void updateExpired() {
+        originTodo.updateExpired();
         assertThat(originTodo.isExpired()).isTrue();
-    }
-
-    @Test
-    public void updateCurrentTime_not_expired() {
-        LocalDateTime tempDataTime = LocalDateTime.of(2019, 12, 25, 10, 30);
-        originTodo.setDeadline(tempDataTime);
-        originTodo.updateCurrentTime();
-        assertThat(originTodo.isExpired()).isFalse();
     }
 
     @Test

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import programmers.domain.todo.Todo;
 import programmers.service.TodoService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -17,8 +18,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
+        LocalDateTime now = LocalDateTime.now();
+        todoService.findDeadlineTodo(now);
+
         List<Todo> todos = todoService.findAll();
-        todoService.updateCurrentTime(todos);
         model.addAttribute("todos", todos);
         return "/index";
     }
