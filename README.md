@@ -22,3 +22,90 @@
 ### 인터페이스 요구사항
 
     ○ 직관적이고 의미 전달이 명확한 화면을 사용자에게 제공한다
+
+### Entitiy 설계
+
+- Todo
+~~~
+title : String
+contents : String
+priority : String
+completed : boolean
+expired : boolean
+deadline : LocalDateTime
+now : LocalDateTime
+
+update()
+complete()
+updateCurrentTime()
+
+AbstractEntity에게 상속 받음
+~~~
+
+- AbstractEntity
+~~~
+id : Long
+createdDate : LocalDateTime
+modifiedDate : LocalDateTime
+
+FormattedDate()
+~~~
+
+### Step
+1. Todo 엔티티 생성
+
+2. Todo CURD 기능 생성 (unitTest 진행)
+
+3. Controller & Restcontroller & Service 구성
+
+4. Ajax 기능 구현
+
+5. 예외처리 구현
+
+### Environment
+- java 8 (Intellij)
+- Gradle
+- Junit
+- SpringBoot 2.1.4 RELEASE
+- JPA (Hibernate)
+- JQuery
+- H2 Database
+
+
+### AWS 웹 서버 설치 및 빌드 (Ubuntu)
+
+1. 아파치 설치
+~~~
+sudo apt-get update sudo
+apt-get install apache2
+~~~
+
+2. 자바 설치
+~~~
+sudo apt-get install openjdk-8-jdk
+~~~
+
+3. github 프로젝트 clone
+~~~
+git clone -b master --single-branch https://github.com/foreverever/Todo-List
+~~~
+
+4. bulid 실행 (test패키지 제외)
+~~~
+/Todo-List$ ./gradlew build -x test
+
+(gradlew-permission-denied 뜰 경우 : chmod +x gradlew 입력 후 실행)
+~~~
+
+5. jar 실행
+
+~~~
+/Todo-List/build/libs$ java -jar Todo-List-0.0.1-SNAPSHOT.jar
+~~~
+
+### URL
+
+ec2-54-180-2-193.ap-northeast-2.compute.amazonaws.com:7080
+
+
+
