@@ -15,8 +15,8 @@ public class TodoTest {
 
     @Before
     public void setUp() throws Exception {
-        originTodo = new Todo("Title","Contents","high", LocalDateTime.now());
-        updatedTodo = new Todo("updatedTitle","updatedContets","low",LocalDateTime.now());
+        originTodo = new Todo("Title", "Contents", "high", LocalDateTime.now());
+        updatedTodo = new Todo("updatedTitle", "updatedContets", "low", LocalDateTime.now());
         defaultTodo = new Todo();
     }
 
@@ -41,7 +41,7 @@ public class TodoTest {
 
     @Test
     public void updateCurrentTime_not_expired() {
-        LocalDateTime tempDataTime = LocalDateTime.of(2019,12,25,10,30);
+        LocalDateTime tempDataTime = LocalDateTime.of(2019, 12, 25, 10, 30);
         originTodo.setDeadline(tempDataTime);
         originTodo.updateCurrentTime();
         assertThat(originTodo.isExpired()).isFalse();

@@ -5,7 +5,6 @@ $(".create-todo-btn").click(createTodo);
 
 function createTodo(e) {
     e.preventDefault();
-    window.history.forward(1);
     console.log("call createTodo");
     var url = $(".create-todo").attr("action");
 
@@ -122,9 +121,6 @@ function deleteTodo(e) {
         }
     })
 }
-
-
-
 
 //에러 메세지
 function onError(jqXHR, status, errorThrown) {
