@@ -33,11 +33,10 @@ priority : String
 completed : boolean
 expired : boolean
 deadline : LocalDateTime
-now : LocalDateTime
 
 update()
 complete()
-updateCurrentTime()
+updateExpired()
 
 AbstractEntity에게 상속 받음
 ~~~
@@ -105,7 +104,7 @@ git clone -b master --single-branch https://github.com/foreverever/Todo-List
 
 ### URL
 
-ec2-54-180-2-193.ap-northeast-2.compute.amazonaws.com:7080
+[ec2-54-180-2-193.ap-northeast-2.compute.amazonaws.com:7080](ec2-54-180-2-193.ap-northeast-2.compute.amazonaws.com:7080)
 
 
 
