@@ -29,7 +29,7 @@ public class ApiTodoController {
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<ErrorMessage>(new ErrorMessage("'제목' 혹은 '내용'을 입력해주세요."), HttpStatus.FORBIDDEN);
         } catch (RuntimeException e) {
-            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'우선순위를 입력해주세요."), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'우선순위'를 입력해주세요."), HttpStatus.FORBIDDEN);
         }
     }
 
@@ -43,7 +43,7 @@ public class ApiTodoController {
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<ErrorMessage>(new ErrorMessage("'제목' 혹은 '내용'을 입력해주세요."), HttpStatus.FORBIDDEN);
         } catch (RuntimeException e) {
-            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'우선순위를 입력해주세요."), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'우선순위'를 입력해주세요."), HttpStatus.FORBIDDEN);
         }
     }
 
