@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @Entity
 public class Todo extends AbstractEntity {
 
-    @Size(min = 2, max = 100)
+    @Size(min = 1, max = 100)
     @Column(nullable = false)
     private String title;
 
-    @Size(min = 2)
+    @Size(min = 1)
     @Column(nullable = false)
     private String contents;
 

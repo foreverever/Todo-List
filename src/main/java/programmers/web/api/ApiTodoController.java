@@ -9,6 +9,7 @@ import programmers.domain.todo.Todo;
 import programmers.service.TodoService;
 import support.domain.ErrorMessage;
 
+import javax.validation.ConstraintViolationException;
 import java.net.URI;
 
 @RestController
@@ -25,8 +26,10 @@ public class ApiTodoController {
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create("/"));
             return new ResponseEntity<Todo>(createdTodo, headers, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<ErrorMessage>(new ErrorMessage("잘 못 입력하셨습니다. 다시 입력하세요"), HttpStatus.FORBIDDEN);
+        } catch (ConstraintViolationException e) {
+            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'제목' 혹은 '내용'을 입력해주세요."), HttpStatus.FORBIDDEN);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'우선순위를 입력해주세요."), HttpStatus.FORBIDDEN);
         }
     }
 
@@ -37,10 +40,11 @@ public class ApiTodoController {
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create("/"));
             return new ResponseEntity<Todo>(updatedTodo, headers, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<ErrorMessage>(new ErrorMessage("잘 못 입력하셨습니다. '제목', '내용', '우선순위'를 확인해주세요"), HttpStatus.FORBIDDEN);
+        } catch (ConstraintViolationException e) {
+            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'제목' 혹은 '내용'을 입력해주세요."), HttpStatus.FORBIDDEN);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<ErrorMessage>(new ErrorMessage("'우선순위를 입력해주세요."), HttpStatus.FORBIDDEN);
         }
-
     }
 
     @DeleteMapping("/{id}")
@@ -48,7 +52,7 @@ public class ApiTodoController {
         try {
             todoService.delete(id);
             return new ResponseEntity(HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             return new ResponseEntity<ErrorMessage>(new ErrorMessage("잘 못 누르셨습니다."), HttpStatus.FORBIDDEN);
         }
     }
@@ -58,7 +62,7 @@ public class ApiTodoController {
         try {
             Todo currentTodo = todoService.complete(id);
             return new ResponseEntity<Todo>(currentTodo, HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             return new ResponseEntity<ErrorMessage>(new ErrorMessage("잘 못 누르셨습니다."), HttpStatus.FORBIDDEN);
         }
     }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programmers.domain.todo.Todo;
 import programmers.domain.todo.TodoRepository;
-
 import java.util.List;
 
 @Service
@@ -25,27 +24,19 @@ public class TodoService {
 
     @Transactional
     public Todo update(long id, Todo updatedTodo) {
-        Todo currentTodo = todoRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
+        Todo currentTodo = findTodo(id);
         return currentTodo.update(updatedTodo);
-    }
-
-    public Todo findTodo(long id) {
-        return todoRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
     }
 
     @Transactional
     public void delete(long id) {
-        Todo currentTodo = todoRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
+        Todo currentTodo = findTodo(id);
         todoRepository.delete(currentTodo);
     }
 
     @Transactional
     public Todo complete(long id) {
-        Todo currentTodo = todoRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
+        Todo currentTodo = findTodo(id);
         return currentTodo.complete();
     }
 
@@ -54,5 +45,10 @@ public class TodoService {
         for (Todo todo : todos) {
             todo.updateCurrentTime();
         }
+    }
+
+    public Todo findTodo(long id) {
+        return todoRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
