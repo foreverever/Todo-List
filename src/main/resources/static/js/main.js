@@ -79,7 +79,7 @@ function completeTodo(e) {
     var url = completeBtn.parent().attr("action");
 
     $.ajax({
-        type : "post",
+        type : "put",
         url : url,
         dataType : "json",
         error : onError,

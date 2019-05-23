@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import programmers.domain.todo.Todo;
 import programmers.service.TodoService;
 import support.domain.ErrorMessage;
@@ -33,6 +34,13 @@ public class ApiTodoController {
         }
     }
 
+    @GetMapping("{id}")
+    public ModelAndView updateForm(@PathVariable long id) {
+        ModelAndView mv = new ModelAndView("/todo/updateForm");
+        mv.addObject("todo",todoService.findTodo(id));
+        return mv;
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable long id, @RequestBody Todo todo) {
         try {
@@ -57,7 +65,7 @@ public class ApiTodoController {
         }
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}/completion")
     public ResponseEntity complete(@PathVariable long id) {
         try {
             Todo currentTodo = todoService.complete(id);
