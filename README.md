@@ -102,9 +102,11 @@ git clone -b master --single-branch https://github.com/foreverever/Todo-List
 /Todo-List/build/libs$ java -jar Todo-List-0.0.1-SNAPSHOT.jar
 ~~~
 
-### URL
+### URL (aws 인스턴스 유동 ip할당에 따른 변경)
+(변경 후)
+<http://ec2-54-180-120-206.ap-northeast-2.compute.amazonaws.com:7080>
 
-<http://ec2-54-180-2-193.ap-northeast-2.compute.amazonaws.com:7080>
-
+(기존)
+http://ec2-54-180-2-193.ap-northeast-2.compute.amazonaws.com:7080
 
 
